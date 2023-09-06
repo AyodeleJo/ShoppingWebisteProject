@@ -1,3 +1,4 @@
+from test_utils import *
 from pages.login_page import LoginPage
 from resources.constants import TEST_SITE_URL
 from pages.login_success_page import LoginSuccessPage

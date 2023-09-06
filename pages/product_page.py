@@ -1,3 +1,4 @@
+from test_utils import *
 from pages.base_page import BasePage
 from pages.product_page_locator import ProductPageLocators
 from resources.constants import MAX_WAIT_INTERVAL
@@ -35,9 +36,13 @@ class ProductPage(BasePage):
         return empty_cart_lbl__txt
 
     def verify_product_image1(self):
-        self.capture_web_element_as_an_image(ProductPageLocators.PRODUCT_IMAGE_ONE, "captured_product_image1.jpg")
-        percentage_dif = self.compare_images("product_image1.jpg", "captured_product_image1.jpg")
+        self.capture_web_element_as_an_image(ProductPageLocators.PRODUCT_IMAGE_ONE,  "captured_product_image1.jpg")
+        percentage_dif = self.compare_images("C:\\Users\\Amos\\ShopingWebisteProject\\test\\product_image1.jpg", "C:\\Users\\Amos\\ShopingWebisteProject\\test\\captured_product_image1.jpg")
         return percentage_dif
+
+    def verify_product_image(self,captured_image,original_image,product_image_locator):
+        self.capture_web_element_as_an_images(product_image_locator,captured_image)
+        return self.compare_images(captured_image,original_image)
 
     def verify_product_image2(self):
         self.capture_web_element_as_an_image(ProductPageLocators.PRODUCT_IMAGE_TWO, "product_image2.jpg")

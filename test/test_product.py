@@ -1,3 +1,4 @@
+from test_utils import *
 from resources.constants import TEST_SITE_URL
 from pages.product_page import ProductPage
 from resources.constants import TEST_SITE_URL, MAX_ALLOWED_DIFF_PERCENTAGE

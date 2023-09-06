@@ -75,6 +75,9 @@ class CheckOutPage(BasePage):
                                                                CheckOutPageLocator.NO_INFO_ERROR_LBL).text
         return error_lbl_text
 
+    def click_finish_btn(self):
+        self.find_element(CheckOutPageLocator.FINISH_BTN).click()
+
     def click_error_btn(self):
         self.find_element(CheckOutPageLocator.ERROR_BTN_LBL).click()
 
@@ -86,3 +89,8 @@ class CheckOutPage(BasePage):
 
     def clear_postalcode_(self):
         self.find_element(CheckOutPageLocator.POSTAL_CODE).clear()
+
+    def verify_final_check_out_lbl(self):
+        final_check_out_lbl_text = self.explicitly_wait_and_find_element(MAX_WAIT_INTERVAL,
+                                                                         CheckOutPageLocator.CHECK_OUT_COMPLETE_LBL).text
+        return final_check_out_lbl_text

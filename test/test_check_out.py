@@ -1,3 +1,4 @@
+from test_utils import *
 from resources.constants import TEST_SITE_URL
 from pages.check_out_page import CheckOutPage
 
@@ -81,5 +82,20 @@ class TestCheckOut:
         price_info_lbl = overview_page.verify_price_info()
         assert price_info_lbl == "Item total: $47.97", "failed"
 
-
-
+    def test_final_confirmation_page(self, driver, user_name_password, personal_info):
+        confirmation_page = CheckOutPage(driver)
+        confirmation_page.navigate_to(TEST_SITE_URL)
+        confirmation_page.wait_and_type_user_name(user_name_password)
+        confirmation_page.wait_and_type_pass_word(user_name_password)
+        confirmation_page.click_login_btn()
+        # confirmation_page.add_to_cart_btn1()
+        # confirmation_page.add_to_cart_btn2()
+        confirmation_page.click_cart_link()
+        confirmation_page.click_check_out_btn()
+        confirmation_page.wait_and_type_first_name(personal_info)
+        confirmation_page.wait_and_type_last_name(personal_info)
+        confirmation_page.wait_and_type_postal_code(personal_info)
+        confirmation_page.click_cont_btn()
+        confirmation_page.click_finish_btn()
+        final_con_info = confirmation_page.verify_final_check_out_lbl()
+        assert final_con_info == "Thank you for your order!", "failed"
